@@ -133,4 +133,9 @@ Pod::Spec.new do |s|
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
+    s.subspec 'SQLitePersistentObject' do |ss|
+        ss.source_files = 'T8DataKit/SQLitePersistentObjects/*.{h,m}'
+        ss.requires_arc = false
+    end
+
 end
