@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6DC395F01B1C134300270D0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC395EF1B1C134300270D0D /* main.m */; };
+		6DC395F31B1C134300270D0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC395F21B1C134300270D0D /* AppDelegate.m */; };
+		6DC395F61B1C134300270D0D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC395F51B1C134300270D0D /* ViewController.m */; };
+		6DC395F91B1C134300270D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DC395F71B1C134300270D0D /* Main.storyboard */; };
+		6DC395FB1B1C134300270D0D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DC395FA1B1C134300270D0D /* Images.xcassets */; };
+		6DC395FE1B1C134300270D0D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DC395FC1B1C134300270D0D /* LaunchScreen.xib */; };
+		6DC3960A1B1C134300270D0D /* T8DataKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396091B1C134300270D0D /* T8DataKitDemoTests.m */; };
+		6DC396351B1C1B9B00270D0D /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396161B1C1B9B00270D0D /* NSData-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396361B1C1B9B00270D0D /* NSDate-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396181B1C1B9B00270D0D /* NSDate-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396371B1C1B9B00270D0D /* NSMutableArray-MultipleSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3961A1B1C1B9B00270D0D /* NSMutableArray-MultipleSort.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396381B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3961C1B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396391B1C1B9B00270D0D /* NSNumber-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3961E1B1C1B9B00270D0D /* NSNumber-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963A1B1C1B9B00270D0D /* NSObject-ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396201B1C1B9B00270D0D /* NSObject-ClassName.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963B1B1C1B9B00270D0D /* NSObject-MissingKV.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396221B1C1B9B00270D0D /* NSObject-MissingKV.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963C1B1C1B9B00270D0D /* NSObject-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396241B1C1B9B00270D0D /* NSObject-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963D1B1C1B9B00270D0D /* NSString-NumberStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396261B1C1B9B00270D0D /* NSString-NumberStuff.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963E1B1C1B9B00270D0D /* NSString-SQLiteColumnName.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396281B1C1B9B00270D0D /* NSString-SQLiteColumnName.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC3963F1B1C1B9B00270D0D /* NSString-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3962A1B1C1B9B00270D0D /* NSString-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396401B1C1B9B00270D0D /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3962C1B1C1B9B00270D0D /* NSString-UppercaseFirst.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396411B1C1B9B00270D0D /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC3962E1B1C1B9B00270D0D /* SQLiteInstanceManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396421B1C1B9B00270D0D /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396301B1C1B9B00270D0D /* SQLitePersistentObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396431B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396321B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396441B1C1B9B00270D0D /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396341B1C1B9B00270D0D /* UIImage-SQLitePersistence.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DC396471B1C1BC100270D0D /* T8DataBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC396461B1C1BC100270D0D /* T8DataBaseModel.m */; };
+		6DC396491B1C1C5600270D0D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC396481B1C1C5600270D0D /* libsqlite3.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DC396041B1C134300270D0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DC395E21B1C134300270D0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DC395E91B1C134300270D0D;
+			remoteInfo = T8DataKitDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6DC395EA1B1C134300270D0D /* T8DataKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = T8DataKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DC395EE1B1C134300270D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DC395EF1B1C134300270D0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6DC395F11B1C134300270D0D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6DC395F21B1C134300270D0D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6DC395F41B1C134300270D0D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6DC395F51B1C134300270D0D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6DC395F81B1C134300270D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6DC395FA1B1C134300270D0D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6DC395FD1B1C134300270D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6DC396031B1C134300270D0D /* T8DataKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = T8DataKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DC396081B1C134300270D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DC396091B1C134300270D0D /* T8DataKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = T8DataKitDemoTests.m; sourceTree = "<group>"; };
+		6DC396151B1C1B9B00270D0D /* NSData-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC396161B1C1B9B00270D0D /* NSData-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC396171B1C1B9B00270D0D /* NSDate-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC396181B1C1B9B00270D0D /* NSDate-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC396191B1C1B9B00270D0D /* NSMutableArray-MultipleSort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray-MultipleSort.h"; sourceTree = "<group>"; };
+		6DC3961A1B1C1B9B00270D0D /* NSMutableArray-MultipleSort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray-MultipleSort.m"; sourceTree = "<group>"; };
+		6DC3961B1B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC3961C1B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC3961D1B1C1B9B00270D0D /* NSNumber-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC3961E1B1C1B9B00270D0D /* NSNumber-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC3961F1B1C1B9B00270D0D /* NSObject-ClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-ClassName.h"; sourceTree = "<group>"; };
+		6DC396201B1C1B9B00270D0D /* NSObject-ClassName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-ClassName.m"; sourceTree = "<group>"; };
+		6DC396211B1C1B9B00270D0D /* NSObject-MissingKV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-MissingKV.h"; sourceTree = "<group>"; };
+		6DC396221B1C1B9B00270D0D /* NSObject-MissingKV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-MissingKV.m"; sourceTree = "<group>"; };
+		6DC396231B1C1B9B00270D0D /* NSObject-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC396241B1C1B9B00270D0D /* NSObject-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC396251B1C1B9B00270D0D /* NSString-NumberStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-NumberStuff.h"; sourceTree = "<group>"; };
+		6DC396261B1C1B9B00270D0D /* NSString-NumberStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-NumberStuff.m"; sourceTree = "<group>"; };
+		6DC396271B1C1B9B00270D0D /* NSString-SQLiteColumnName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-SQLiteColumnName.h"; sourceTree = "<group>"; };
+		6DC396281B1C1B9B00270D0D /* NSString-SQLiteColumnName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-SQLiteColumnName.m"; sourceTree = "<group>"; };
+		6DC396291B1C1B9B00270D0D /* NSString-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC3962A1B1C1B9B00270D0D /* NSString-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC3962B1B1C1B9B00270D0D /* NSString-UppercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-UppercaseFirst.h"; sourceTree = "<group>"; };
+		6DC3962C1B1C1B9B00270D0D /* NSString-UppercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-UppercaseFirst.m"; sourceTree = "<group>"; };
+		6DC3962D1B1C1B9B00270D0D /* SQLiteInstanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteInstanceManager.h; sourceTree = "<group>"; };
+		6DC3962E1B1C1B9B00270D0D /* SQLiteInstanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteInstanceManager.m; sourceTree = "<group>"; };
+		6DC3962F1B1C1B9B00270D0D /* SQLitePersistentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLitePersistentObject.h; sourceTree = "<group>"; };
+		6DC396301B1C1B9B00270D0D /* SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLitePersistentObject.m; sourceTree = "<group>"; };
+		6DC396311B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-SQLitePersistentObject.h"; sourceTree = "<group>"; };
+		6DC396321B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-SQLitePersistentObject.m"; sourceTree = "<group>"; };
+		6DC396331B1C1B9B00270D0D /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
+		6DC396341B1C1B9B00270D0D /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
+		6DC396451B1C1BC100270D0D /* T8DataBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T8DataBaseModel.h; sourceTree = "<group>"; };
+		6DC396461B1C1BC100270D0D /* T8DataBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T8DataBaseModel.m; sourceTree = "<group>"; };
+		6DC396481B1C1C5600270D0D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DC395E71B1C134300270D0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC396491B1C1C5600270D0D /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DC396001B1C134300270D0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6DC395E11B1C134300270D0D = {
+			isa = PBXGroup;
+			children = (
+				6DC396481B1C1C5600270D0D /* libsqlite3.dylib */,
+				6DC395EC1B1C134300270D0D /* T8DataKitDemo */,
+				6DC396061B1C134300270D0D /* T8DataKitDemoTests */,
+				6DC395EB1B1C134300270D0D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6DC395EB1B1C134300270D0D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DC395EA1B1C134300270D0D /* T8DataKitDemo.app */,
+				6DC396031B1C134300270D0D /* T8DataKitDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DC395EC1B1C134300270D0D /* T8DataKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				6DC395F11B1C134300270D0D /* AppDelegate.h */,
+				6DC395F21B1C134300270D0D /* AppDelegate.m */,
+				6DC395F41B1C134300270D0D /* ViewController.h */,
+				6DC395F51B1C134300270D0D /* ViewController.m */,
+				6DC396131B1C1B9B00270D0D /* T8DataKit */,
+				6DC395F71B1C134300270D0D /* Main.storyboard */,
+				6DC395FA1B1C134300270D0D /* Images.xcassets */,
+				6DC395FC1B1C134300270D0D /* LaunchScreen.xib */,
+				6DC395ED1B1C134300270D0D /* Supporting Files */,
+			);
+			path = T8DataKitDemo;
+			sourceTree = "<group>";
+		};
+		6DC395ED1B1C134300270D0D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DC395EE1B1C134300270D0D /* Info.plist */,
+				6DC395EF1B1C134300270D0D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DC396061B1C134300270D0D /* T8DataKitDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DC396091B1C134300270D0D /* T8DataKitDemoTests.m */,
+				6DC396071B1C134300270D0D /* Supporting Files */,
+			);
+			path = T8DataKitDemoTests;
+			sourceTree = "<group>";
+		};
+		6DC396071B1C134300270D0D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6DC396081B1C134300270D0D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DC396131B1C1B9B00270D0D /* T8DataKit */ = {
+			isa = PBXGroup;
+			children = (
+				6DC396141B1C1B9B00270D0D /* SQLitePersistentObjects */,
+				6DC396451B1C1BC100270D0D /* T8DataBaseModel.h */,
+				6DC396461B1C1BC100270D0D /* T8DataBaseModel.m */,
+			);
+			name = T8DataKit;
+			path = ../../T8DataKit;
+			sourceTree = "<group>";
+		};
+		6DC396141B1C1B9B00270D0D /* SQLitePersistentObjects */ = {
+			isa = PBXGroup;
+			children = (
+				6DC396151B1C1B9B00270D0D /* NSData-SQLitePersistence.h */,
+				6DC396161B1C1B9B00270D0D /* NSData-SQLitePersistence.m */,
+				6DC396171B1C1B9B00270D0D /* NSDate-SQLitePersistence.h */,
+				6DC396181B1C1B9B00270D0D /* NSDate-SQLitePersistence.m */,
+				6DC396191B1C1B9B00270D0D /* NSMutableArray-MultipleSort.h */,
+				6DC3961A1B1C1B9B00270D0D /* NSMutableArray-MultipleSort.m */,
+				6DC3961B1B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.h */,
+				6DC3961C1B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.m */,
+				6DC3961D1B1C1B9B00270D0D /* NSNumber-SQLitePersistence.h */,
+				6DC3961E1B1C1B9B00270D0D /* NSNumber-SQLitePersistence.m */,
+				6DC3961F1B1C1B9B00270D0D /* NSObject-ClassName.h */,
+				6DC396201B1C1B9B00270D0D /* NSObject-ClassName.m */,
+				6DC396211B1C1B9B00270D0D /* NSObject-MissingKV.h */,
+				6DC396221B1C1B9B00270D0D /* NSObject-MissingKV.m */,
+				6DC396231B1C1B9B00270D0D /* NSObject-SQLitePersistence.h */,
+				6DC396241B1C1B9B00270D0D /* NSObject-SQLitePersistence.m */,
+				6DC396251B1C1B9B00270D0D /* NSString-NumberStuff.h */,
+				6DC396261B1C1B9B00270D0D /* NSString-NumberStuff.m */,
+				6DC396271B1C1B9B00270D0D /* NSString-SQLiteColumnName.h */,
+				6DC396281B1C1B9B00270D0D /* NSString-SQLiteColumnName.m */,
+				6DC396291B1C1B9B00270D0D /* NSString-SQLitePersistence.h */,
+				6DC3962A1B1C1B9B00270D0D /* NSString-SQLitePersistence.m */,
+				6DC3962B1B1C1B9B00270D0D /* NSString-UppercaseFirst.h */,
+				6DC3962C1B1C1B9B00270D0D /* NSString-UppercaseFirst.m */,
+				6DC3962D1B1C1B9B00270D0D /* SQLiteInstanceManager.h */,
+				6DC3962E1B1C1B9B00270D0D /* SQLiteInstanceManager.m */,
+				6DC3962F1B1C1B9B00270D0D /* SQLitePersistentObject.h */,
+				6DC396301B1C1B9B00270D0D /* SQLitePersistentObject.m */,
+				6DC396311B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.h */,
+				6DC396321B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.m */,
+				6DC396331B1C1B9B00270D0D /* UIImage-SQLitePersistence.h */,
+				6DC396341B1C1B9B00270D0D /* UIImage-SQLitePersistence.m */,
+			);
+			path = SQLitePersistentObjects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DC395E91B1C134300270D0D /* T8DataKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DC3960D1B1C134300270D0D /* Build configuration list for PBXNativeTarget "T8DataKitDemo" */;
+			buildPhases = (
+				6DC395E61B1C134300270D0D /* Sources */,
+				6DC395E71B1C134300270D0D /* Frameworks */,
+				6DC395E81B1C134300270D0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = T8DataKitDemo;
+			productName = T8DataKitDemo;
+			productReference = 6DC395EA1B1C134300270D0D /* T8DataKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DC396021B1C134300270D0D /* T8DataKitDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DC396101B1C134300270D0D /* Build configuration list for PBXNativeTarget "T8DataKitDemoTests" */;
+			buildPhases = (
+				6DC395FF1B1C134300270D0D /* Sources */,
+				6DC396001B1C134300270D0D /* Frameworks */,
+				6DC396011B1C134300270D0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DC396051B1C134300270D0D /* PBXTargetDependency */,
+			);
+			name = T8DataKitDemoTests;
+			productName = T8DataKitDemoTests;
+			productReference = 6DC396031B1C134300270D0D /* T8DataKitDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DC395E21B1C134300270D0D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "琦张";
+				TargetAttributes = {
+					6DC395E91B1C134300270D0D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					6DC396021B1C134300270D0D = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 6DC395E91B1C134300270D0D;
+					};
+				};
+			};
+			buildConfigurationList = 6DC395E51B1C134300270D0D /* Build configuration list for PBXProject "T8DataKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6DC395E11B1C134300270D0D;
+			productRefGroup = 6DC395EB1B1C134300270D0D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DC395E91B1C134300270D0D /* T8DataKitDemo */,
+				6DC396021B1C134300270D0D /* T8DataKitDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DC395E81B1C134300270D0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC395F91B1C134300270D0D /* Main.storyboard in Resources */,
+				6DC395FE1B1C134300270D0D /* LaunchScreen.xib in Resources */,
+				6DC395FB1B1C134300270D0D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DC396011B1C134300270D0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DC395E61B1C134300270D0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC396351B1C1B9B00270D0D /* NSData-SQLitePersistence.m in Sources */,
+				6DC3963F1B1C1B9B00270D0D /* NSString-SQLitePersistence.m in Sources */,
+				6DC396441B1C1B9B00270D0D /* UIImage-SQLitePersistence.m in Sources */,
+				6DC395F61B1C134300270D0D /* ViewController.m in Sources */,
+				6DC396381B1C1B9B00270D0D /* NSMutableData-SQLitePersistence.m in Sources */,
+				6DC396411B1C1B9B00270D0D /* SQLiteInstanceManager.m in Sources */,
+				6DC3963B1B1C1B9B00270D0D /* NSObject-MissingKV.m in Sources */,
+				6DC395F31B1C134300270D0D /* AppDelegate.m in Sources */,
+				6DC3963A1B1C1B9B00270D0D /* NSObject-ClassName.m in Sources */,
+				6DC396421B1C1B9B00270D0D /* SQLitePersistentObject.m in Sources */,
+				6DC395F01B1C134300270D0D /* main.m in Sources */,
+				6DC396391B1C1B9B00270D0D /* NSNumber-SQLitePersistence.m in Sources */,
+				6DC3963C1B1C1B9B00270D0D /* NSObject-SQLitePersistence.m in Sources */,
+				6DC396361B1C1B9B00270D0D /* NSDate-SQLitePersistence.m in Sources */,
+				6DC3963E1B1C1B9B00270D0D /* NSString-SQLiteColumnName.m in Sources */,
+				6DC396371B1C1B9B00270D0D /* NSMutableArray-MultipleSort.m in Sources */,
+				6DC396401B1C1B9B00270D0D /* NSString-UppercaseFirst.m in Sources */,
+				6DC396431B1C1B9B00270D0D /* UIColor-SQLitePersistentObject.m in Sources */,
+				6DC396471B1C1BC100270D0D /* T8DataBaseModel.m in Sources */,
+				6DC3963D1B1C1B9B00270D0D /* NSString-NumberStuff.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DC395FF1B1C134300270D0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC3960A1B1C134300270D0D /* T8DataKitDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DC396051B1C134300270D0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DC395E91B1C134300270D0D /* T8DataKitDemo */;
+			targetProxy = 6DC396041B1C134300270D0D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6DC395F71B1C134300270D0D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DC395F81B1C134300270D0D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6DC395FC1B1C134300270D0D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6DC395FD1B1C134300270D0D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DC3960B1B1C134300270D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6DC3960C1B1C134300270D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DC3960E1B1C134300270D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = T8DataKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6DC3960F1B1C134300270D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = T8DataKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6DC396111B1C134300270D0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = T8DataKitDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/T8DataKitDemo.app/T8DataKitDemo";
+			};
+			name = Debug;
+		};
+		6DC396121B1C134300270D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = T8DataKitDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/T8DataKitDemo.app/T8DataKitDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DC395E51B1C134300270D0D /* Build configuration list for PBXProject "T8DataKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DC3960B1B1C134300270D0D /* Debug */,
+				6DC3960C1B1C134300270D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DC3960D1B1C134300270D0D /* Build configuration list for PBXNativeTarget "T8DataKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DC3960E1B1C134300270D0D /* Debug */,
+				6DC3960F1B1C134300270D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6DC396101B1C134300270D0D /* Build configuration list for PBXNativeTarget "T8DataKitDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DC396111B1C134300270D0D /* Debug */,
+				6DC396121B1C134300270D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DC395E21B1C134300270D0D /* Project object */;
+}
