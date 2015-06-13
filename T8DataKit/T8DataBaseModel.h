@@ -6,8 +6,17 @@
 //  Copyright (c) 2015年 琦张. All rights reserved.
 //
 
-#import "SQLitePersistentObject.h"
+#import <Foundation/Foundation.h>
 
-@interface T8DataBaseModel : SQLitePersistentObject
+#define DBText  @"text"
+#define DBInt   @"integer"
+#define DBFloat @"real"
+#define DBData  @"blob"
+
+@interface T8DataBaseModel : NSObject
+
+- (void)save;
+- (void)deleteObject;
++ (NSMutableArray *)queryWithCondition:(NSString *)condition;
 
 @end
