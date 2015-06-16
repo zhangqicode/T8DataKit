@@ -153,19 +153,24 @@
 + (NSMutableDictionary *)getPropertyInfo
 {
     static NSMutableDictionary *propertyInfoDict;
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
+    if (propertyInfoDict==nil) {
         propertyInfoDict = [NSMutableDictionary dictionary];
+    }
+    NSString *className = [NSStringFromClass([self class]) lowercaseString];
+    NSMutableDictionary *classDict = [propertyInfoDict objectForKey:className];
+    if (classDict==nil) {
+        classDict = [NSMutableDictionary dictionary];
         unsigned int count;
         objc_property_t *properties = class_copyPropertyList([self class], &count);
         for (int i = 0; i < count; i++) {
             objc_property_t property = properties[i];
             NSString * key = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
             NSString *type = [self dbTypeConvertFromObjc_property_t:property];
-            [propertyInfoDict setObject:type forKey:key];
+            [classDict setObject:type forKey:key];
         }
-    });
-    return propertyInfoDict;
+        [propertyInfoDict setObject:classDict forKey:className];
+    }
+    return classDict;
 }
 
 + (NSString *)dbTypeConvertFromObjc_property_t:(objc_property_t)property
