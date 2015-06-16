@@ -15,6 +15,8 @@
 
 @interface T8DataBaseModel : NSObject
 
+- (id)initWithDict:(NSDictionary *)dict;
+
 - (void)save;
 - (void)deleteObject;
 + (NSMutableArray *)queryWithCondition:(NSString *)condition;

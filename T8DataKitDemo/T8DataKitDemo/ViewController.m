@@ -26,6 +26,11 @@
     T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = '123'"].firstObject;
     NSLog(@"121...");
     
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"zhangqi", @"name", @(26), @"age", nil];
+    T8TestModel *zhang = [[T8TestModel alloc] initWithDict:dict];
+    NSLog(@"1212222...");
+
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

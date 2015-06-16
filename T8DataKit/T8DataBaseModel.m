@@ -13,6 +13,15 @@
 
 @implementation T8DataBaseModel
 
+- (id)initWithDict:(NSDictionary *)dict
+{
+    self = [super init];
+    if (self) {
+        [self setValuesForKeysWithDictionary:dict];
+    }
+    return self;
+}
+
 - (void)save
 {
     [self checkTable];
@@ -26,7 +35,6 @@
     }
     NSString *values = [proArr componentsJoinedByString:@", "];
     NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
-    NSLog(@"query format :%@",queryFormat);
     
     NSMutableArray *params = [NSMutableArray array];
     for (int i = 0; i < proNames.count; i++) {
