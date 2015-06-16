@@ -17,7 +17,14 @@
 {
     self = [super init];
     if (self) {
-        [self setValuesForKeysWithDictionary:dict];
+        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        NSArray *proNames = propertyInfos.allKeys;
+        [proNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+            id value = [dict objectForKey:name];
+            if (value) {
+                [self setValue:value forKey:name];
+            }
+        }];
     }
     return self;
 }

@@ -26,7 +26,7 @@
     T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = '123'"].firstObject;
     NSLog(@"121...");
     
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"zhangqi", @"name", @(26), @"age", nil];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:@"zhangqi1", @"name", @(26), @"age", @"extraValue", @"extraKey", nil];
     T8TestModel *zhang = [[T8TestModel alloc] initWithDict:dict];
     NSLog(@"1212222...");
 
