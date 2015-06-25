@@ -31,7 +31,7 @@
 
 - (void)save
 {
-    [self checkTable];
+    [[self class] checkTable];
     
     NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
     NSArray *proNames = propertyInfos.allKeys;
@@ -108,7 +108,36 @@
     return resultArr;
 }
 
-- (void)checkTable
++ (void)saveBatchItems:(NSArray *)items
+{
+    [[self class] checkTable];
+    
+    [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
+        [db beginTransaction];
+        for (id item in items) {
+            NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+            NSArray *proNames = propertyInfos.allKeys;
+            NSString *names = [proNames componentsJoinedByString:@", "];
+            NSMutableArray *proArr = [NSMutableArray array];
+            for (int i = 0; i < proNames.count; i++) {
+                [proArr addObject:@"?"];
+            }
+            NSString *values = [proArr componentsJoinedByString:@", "];
+            NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
+            
+            NSMutableArray *params = [NSMutableArray array];
+            for (int i = 0; i < proNames.count; i++) {
+                NSString *key = [proNames objectAtIndex:i];
+                id value = [item valueForKey:key];
+                [params addObject:value];
+            }
+            [db executeUpdate:queryFormat withArgumentsInArray:params];
+        }
+        [db commit];
+    } synchronous:false];
+}
+
++ (void)checkTable
 {
     NSMutableString *sql = [NSMutableString stringWithCapacity:0];
     [sql appendString:@"create table if not exists "];

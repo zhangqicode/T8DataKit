@@ -20,5 +20,6 @@
 - (void)save;
 - (void)deleteObject;
 + (NSMutableArray *)queryWithCondition:(NSString *)condition;
++ (void)saveBatchItems:(NSArray *)items;
 
 @end

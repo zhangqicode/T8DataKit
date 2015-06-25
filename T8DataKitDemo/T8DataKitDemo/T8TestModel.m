@@ -17,7 +17,7 @@
 
 + (NSArray *)ignoreProperties
 {
-    return @[@"age"];
+    return nil;
 }
 
 @end
