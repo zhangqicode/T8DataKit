@@ -193,9 +193,10 @@
             break;
             
         case 'c':   // char
-        case 's' : //short
+        case 's':   // short
         case 'i':   // int
         case 'l':   // long
+        case 'q':   // NSInteger
         {
             return DBInt;
         }
