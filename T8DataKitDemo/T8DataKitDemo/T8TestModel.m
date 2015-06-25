@@ -15,4 +15,9 @@
     return @"name";
 }
 
++ (NSArray *)ignoreProperties
+{
+    return @[@"age"];
+}
+
 @end
