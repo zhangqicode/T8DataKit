@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "T8DataBaseManager.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[T8DataBaseManager shareInstance] setDbVersion:1];
+    
     return YES;
 }
 

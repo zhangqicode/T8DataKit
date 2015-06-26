@@ -12,7 +12,11 @@
 
 @interface T8DataBaseManager : NSObject
 
+@property (nonatomic, assign) NSInteger dbVersion;
+
 + (T8DataBaseManager *)shareInstance;
+
+- (void)setDbVersion:(NSInteger)dbVersion;
 
 - (void)dispatchOnDatabaseThread:(void (^)(FMDatabase *db))block synchronous:(bool)synchronous;
 

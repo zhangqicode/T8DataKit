@@ -33,6 +33,34 @@ static T8DataBaseManager *T8DatabaseSingleton = nil;
     return T8DatabaseSingleton;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _dbVersion = 0;
+    }
+    return self;
+}
+
+- (void)setDbVersion:(NSInteger)dbVersion
+{
+    _dbVersion = dbVersion;
+    if (_dbVersion>0) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath = [paths objectAtIndex:0];
+        NSString *databaseDir = [documentPath stringByAppendingPathComponent:@"T8DataBase"];
+        NSError *error;
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:databaseDir withIntermediateDirectories:YES attributes:nil error:&error]) {
+            NSLog(@"T8DataBase path create error:%@", error.debugDescription);
+        }
+        NSString *dbName = [NSString stringWithFormat:@"T8DataBase_main_%ld.db", self.dbVersion-1];
+        NSString *finalPath = [databaseDir stringByAppendingPathComponent:dbName];
+        if (![[NSFileManager defaultManager] removeItemAtPath:finalPath error:&error]) {
+            NSLog(@"T8DataBase clear old dbfile error:%@", error.debugDescription);
+        }
+    }
+}
+
 - (FMDatabaseQueue *)databaseQueue
 {
     static dispatch_once_t onceToken;
@@ -71,7 +99,8 @@ static T8DataBaseManager *T8DatabaseSingleton = nil;
     if (![[NSFileManager defaultManager] createDirectoryAtPath:databaseDir withIntermediateDirectories:YES attributes:nil error:&error]) {
         NSLog(@"T8DataBase path create error:%@", error.debugDescription);
     }
-    NSString *finalPath = [databaseDir stringByAppendingPathComponent:@"T8DataBase_main.db"];
+    NSString *dbName = [NSString stringWithFormat:@"T8DataBase_main_%ld.db", self.dbVersion];
+    NSString *finalPath = [databaseDir stringByAppendingPathComponent:dbName];
     return finalPath;
 }
 
