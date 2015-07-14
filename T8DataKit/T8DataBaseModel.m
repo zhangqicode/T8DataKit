@@ -46,18 +46,14 @@
     NSMutableArray *params = [NSMutableArray array];
     for (int i = 0; i < proNames.count; i++) {
         NSString *key = [proNames objectAtIndex:i];
-//        NSString *type = [propertyInfos objectForKey:key];
+        NSString *type = [propertyInfos objectForKey:key];
         id value = [self valueForKey:key];
-        [params addObject:value];
-//        if ([type isEqualToString:DBInt]) {
-//            [params addObject:value];
-//        }else if ([type isEqualToString:DBFloat]){
-//            [params addObject:value];
-//        }else if ([type isEqualToString:DBText]){
-//            [params addObject:value];
-//        }else if ([type isEqualToString:DBData]){
-//            [params addObject:value];
-//        }
+        if ([type isEqualToString:DBObject]) {
+            id<NSCoding> obj = value;
+            [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
+        }else{
+            [params addObject:value];
+        }
     }
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
@@ -97,6 +93,9 @@
                     value = [result stringForColumn:key];
                 }else if ([type isEqualToString:DBData]){
                     value = [result dataForColumn:key];
+                }else if ([type isEqualToString:DBObject]){
+                    value = [result dataForColumn:key];
+                    value = [NSKeyedUnarchiver unarchiveObjectWithData:value];
                 }
                 [model setValue:value forKey:key];
             }];
@@ -126,10 +125,18 @@
             NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
             
             NSMutableArray *params = [NSMutableArray array];
+            NSCoder *coder = [[NSCoder alloc] init];
             for (int i = 0; i < proNames.count; i++) {
                 NSString *key = [proNames objectAtIndex:i];
+                NSString *type = [propertyInfos objectForKey:key];
                 id value = [item valueForKey:key];
-                [params addObject:value];
+                if ([type isEqualToString:DBData] && ![value isKindOfClass:[NSData class]]) {
+                    id<NSCoding> obj = value;
+                    [obj encodeWithCoder:coder];
+                    [params addObject:[coder decodeDataObject]];
+                }else{
+                    [params addObject:value];
+                }
             }
             [db executeUpdate:queryFormat withArgumentsInArray:params];
         }
@@ -150,6 +157,9 @@
     __weak typeof(self) weakSelf = self;
     [propertyInfos.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         NSString *type = [propertyInfos objectForKey:key];
+        if ([type isEqualToString:DBObject]) {
+            type = DBData;
+        }
         NSString *proStr;
         if ([key isEqualToString:[[weakSelf class] primaryKey]]) {
             proStr = [NSString stringWithFormat:@"%@ %@ primary key", [[weakSelf class] primaryKey], type];
@@ -164,10 +174,6 @@
     [sql appendString:propertyStr];
     
     [sql appendString:@");"];
-    
-//    [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
-//        [db executeUpdate:[NSString stringWithFormat:@"drop table %@", [[self class] tableName]]];
-//    } synchronous:true];
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         
@@ -211,6 +217,7 @@
                 continue;
             }
             NSString *type = [self dbTypeConvertFromObjc_property_t:property];
+            NSLog(@"type:%@", type);
             [classDict setObject:type forKey:key];
         }
         [propertyInfoDict setObject:classDict forKey:className];
@@ -274,11 +281,44 @@
             if ([NSClassFromString(cls) isSubclassOfClass:[NSData class]]) {
                 return DBData;
             }
+            
+            if ([NSClassFromString(cls) conformsToProtocol:@protocol(NSCoding)]) {
+                return DBObject;
+            }
         }
             break;
     }
     
     return DBText;
+}
+
+#pragma mark - NSCoding
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
+        [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
+            id value = [aDecoder decodeObjectForKey:propertyName];
+            if ([type isEqualToString:DBObject]) {
+                value = [NSKeyedUnarchiver unarchiveObjectWithData:value];
+            }
+            [self setValue:value forKey:propertyName];
+        }];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
+    [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
+        id value = [self valueForKey:propertyName];
+        if ([type isEqualToString:DBObject]) {
+            value = [NSKeyedArchiver archivedDataWithRootObject:value];
+        }
+        [aCoder encodeObject:value forKey:propertyName];
+    }];
 }
 
 @end

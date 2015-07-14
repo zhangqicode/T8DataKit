@@ -12,8 +12,9 @@
 #define DBInt   @"integer"
 #define DBFloat @"real"
 #define DBData  @"blob"
+#define DBObject @"object"
 
-@interface T8DataBaseModel : NSObject
+@interface T8DataBaseModel : NSObject<NSCoding>
 
 - (id)initWithDict:(NSDictionary *)dict;
 

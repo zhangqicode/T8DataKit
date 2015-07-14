@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0125E51B54FF1B003E04D8 /* SubModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0125E41B54FF1B003E04D8 /* SubModel.m */; };
 		6D1D1EA51B1D7F2A007D2918 /* T8TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D1EA41B1D7F2A007D2918 /* T8TestModel.m */; };
 		6D1D1EAA1B1D8BED007D2918 /* T8DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D1D1EA91B1D8BED007D2918 /* T8DataBaseManager.m */; };
 		6DC395F01B1C134300270D0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC395EF1B1C134300270D0D /* main.m */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		3452125A1041F09688D76D64 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6E3C3EF780CA2D7BD75719 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6D0125E31B54FF1B003E04D8 /* SubModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubModel.h; sourceTree = "<group>"; };
+		6D0125E41B54FF1B003E04D8 /* SubModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubModel.m; sourceTree = "<group>"; };
 		6D1D1EA31B1D7F2A007D2918 /* T8TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T8TestModel.h; sourceTree = "<group>"; };
 		6D1D1EA41B1D7F2A007D2918 /* T8TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = T8TestModel.m; sourceTree = "<group>"; };
 		6D1D1EA81B1D8BED007D2918 /* T8DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = T8DataBaseManager.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				6DC395F51B1C134300270D0D /* ViewController.m */,
 				6D1D1EA31B1D7F2A007D2918 /* T8TestModel.h */,
 				6D1D1EA41B1D7F2A007D2918 /* T8TestModel.m */,
+				6D0125E31B54FF1B003E04D8 /* SubModel.h */,
+				6D0125E41B54FF1B003E04D8 /* SubModel.m */,
 				6DC396131B1C1B9B00270D0D /* T8DataKit */,
 				6DC395F71B1C134300270D0D /* Main.storyboard */,
 				6DC395FA1B1C134300270D0D /* Images.xcassets */,
@@ -307,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DC395F61B1C134300270D0D /* ViewController.m in Sources */,
+				6D0125E51B54FF1B003E04D8 /* SubModel.m in Sources */,
 				6DC395F31B1C134300270D0D /* AppDelegate.m in Sources */,
 				6DC395F01B1C134300270D0D /* main.m in Sources */,
 				6D1D1EA51B1D7F2A007D2918 /* T8TestModel.m in Sources */,
