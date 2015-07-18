@@ -23,4 +23,6 @@
 + (NSMutableArray *)queryWithCondition:(NSString *)condition;
 + (void)saveBatchItems:(NSArray *)items;
 
++ (NSString *)tableName;
+
 @end
