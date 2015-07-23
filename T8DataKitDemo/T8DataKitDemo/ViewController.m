@@ -31,14 +31,14 @@
 //    [T8TestModel saveBatchItems:items];
     
     T8TestModel *model = [[T8TestModel alloc] init];
-    model.name = @"zhangqi";
-    model.model = [[SubModel alloc] init];
-    model.model.name = @"haha";
-    model.model.age = 20;
-    [model save];
-    
-    T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = 'zhangqi'"].firstObject;
-    NSLog(@"ttt:%@",query.model);
+//    model.name = @"zhangqi";
+//    model.model = [[SubModel alloc] init];
+//    model.model.name = @"haha";
+//    model.model.age = 20;
+//    [model save];
+//    
+//    T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = 'zhangqi'"].firstObject;
+//    NSLog(@"ttt:%@",query.model);
     
     // Do any additional setup after loading the view, typically from a nib.
 }

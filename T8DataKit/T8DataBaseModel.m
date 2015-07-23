@@ -13,9 +13,33 @@
 
 @implementation T8DataBaseModel
 
-- (id)initWithDict:(NSDictionary *)dict
+- (id)init
 {
     self = [super init];
+    if (self) {
+        
+        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        [propertyInfos enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *type, BOOL *stop) {
+            if ([type hasPrefix:DBObject]) {
+                NSArray *items = [type componentsSeparatedByString:@" "];
+                if (items.count == 2) {
+                    NSString *className = items.lastObject;
+                    [self setValue:[[NSClassFromString(className) alloc] init] forKey:key];
+                }
+            }else if ([type isEqualToString:DBText]){
+                [self setValue:@"" forKey:key];
+            }else if ([type isEqualToString:DBData]){
+                [self setValue:[NSData data] forKey:key];
+            }
+        }];
+        
+    }
+    return self;
+}
+
+- (id)initWithDict:(NSDictionary *)dict
+{
+    self = [self init];
     if (self) {
         NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
         NSArray *proNames = propertyInfos.allKeys;
@@ -48,7 +72,7 @@
         NSString *key = [proNames objectAtIndex:i];
         NSString *type = [propertyInfos objectForKey:key];
         id value = [self valueForKey:key];
-        if ([type isEqualToString:DBObject]) {
+        if ([type hasPrefix:DBObject]) {
             id<NSCoding> obj = value;
             [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
         }else{
@@ -93,7 +117,7 @@
                     value = [result stringForColumn:key];
                 }else if ([type isEqualToString:DBData]){
                     value = [result dataForColumn:key];
-                }else if ([type isEqualToString:DBObject]){
+                }else if ([type hasPrefix:DBObject]){
                     value = [result dataForColumn:key];
                     value = [NSKeyedUnarchiver unarchiveObjectWithData:value];
                 }
@@ -157,7 +181,7 @@
     __weak typeof(self) weakSelf = self;
     [propertyInfos.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         NSString *type = [propertyInfos objectForKey:key];
-        if ([type isEqualToString:DBObject]) {
+        if ([type hasPrefix:DBObject]) {
             type = DBData;
         }
         NSString *proStr;
@@ -217,7 +241,6 @@
                 continue;
             }
             NSString *type = [self dbTypeConvertFromObjc_property_t:property];
-            NSLog(@"type:%@", type);
             [classDict setObject:type forKey:key];
         }
         [propertyInfoDict setObject:classDict forKey:className];
@@ -283,7 +306,7 @@
             }
             
             if ([NSClassFromString(cls) conformsToProtocol:@protocol(NSCoding)]) {
-                return DBObject;
+                return [DBObject stringByAppendingFormat:@" %@", cls];
             }
         }
             break;
@@ -300,7 +323,7 @@
         NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
         [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
             id value = [aDecoder decodeObjectForKey:propertyName];
-            if ([type isEqualToString:DBObject]) {
+            if ([type hasPrefix:DBObject]) {
                 value = [NSKeyedUnarchiver unarchiveObjectWithData:value];
             }
             [self setValue:value forKey:propertyName];
@@ -314,7 +337,7 @@
     NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
     [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
         id value = [self valueForKey:propertyName];
-        if ([type isEqualToString:DBObject]) {
+        if ([type hasPrefix:DBObject]) {
             value = [NSKeyedArchiver archivedDataWithRootObject:value];
         }
         [aCoder encodeObject:value forKey:propertyName];
