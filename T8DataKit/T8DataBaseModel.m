@@ -82,7 +82,7 @@
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         [db executeUpdate:queryFormat withArgumentsInArray:params];
-    } synchronous:false];
+    } synchronous:true];
 }
 
 - (void)deleteObject
