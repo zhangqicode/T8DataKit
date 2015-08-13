@@ -289,18 +289,6 @@
                 return DBText;
             }
             
-            if ([NSClassFromString(cls) isSubclassOfClass:[NSDictionary class]]) {
-                return DBText;
-            }
-            
-            if ([NSClassFromString(cls) isSubclassOfClass:[NSArray class]]) {
-                return DBText;
-            }
-            
-            if ([NSClassFromString(cls) isSubclassOfClass:[NSDate class]]) {
-                return DBText;
-            }
-            
             if ([NSClassFromString(cls) isSubclassOfClass:[NSData class]]) {
                 return DBData;
             }
