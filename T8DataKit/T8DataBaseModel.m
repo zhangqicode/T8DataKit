@@ -164,15 +164,13 @@
             NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
             
             NSMutableArray *params = [NSMutableArray array];
-            NSCoder *coder = [[NSCoder alloc] init];
             for (int i = 0; i < proNames.count; i++) {
                 NSString *key = [proNames objectAtIndex:i];
                 NSString *type = [propertyInfos objectForKey:key];
                 id value = [item valueForKey:key];
-                if ([type isEqualToString:DBData] && ![value isKindOfClass:[NSData class]]) {
+                if ([type hasPrefix:DBObject]) {
                     id<NSCoding> obj = value;
-                    [obj encodeWithCoder:coder];
-                    [params addObject:[coder decodeDataObject]];
+                    [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
                 }else{
                     [params addObject:value];
                 }
