@@ -55,6 +55,11 @@
 
 - (void)save
 {
+    [self saveSynchronous:false];
+}
+
+- (void)saveSynchronous:(BOOL)sync
+{
     [[self class] checkTable];
     
     NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
@@ -82,10 +87,15 @@
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         [db executeUpdate:queryFormat withArgumentsInArray:params];
-    } synchronous:true];
+    } synchronous:sync];
 }
 
 - (void)deleteObject
+{
+    [self deleteObjectSynchronous:false];
+}
+
+- (void)deleteObjectSynchronous:(BOOL)sync
 {
     NSString *primaryKey = [[self class] primaryKey];
     NSString *queryFormat = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?", [[self class] tableName], primaryKey];
@@ -93,7 +103,7 @@
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         [db executeUpdate:queryFormat withArgumentsInArray:valueArr];
-    } synchronous:false];
+    } synchronous:sync];
 }
 
 + (NSMutableArray *)queryWithCondition:(NSString *)condition
@@ -133,6 +143,11 @@
 
 + (void)saveBatchItems:(NSArray *)items
 {
+    [self saveBatchItems:items synchronous:false];
+}
+
++ (void)saveBatchItems:(NSArray *)items synchronous:(BOOL)sync
+{
     [[self class] checkTable];
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
@@ -165,7 +180,7 @@
             [db executeUpdate:queryFormat withArgumentsInArray:params];
         }
         [db commit];
-    } synchronous:false];
+    } synchronous:sync];
 }
 
 + (void)checkTable
