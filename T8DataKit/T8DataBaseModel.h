@@ -23,6 +23,7 @@
 - (void)deleteObject;
 - (void)deleteObjectSynchronous:(BOOL)sync;
 + (NSMutableArray *)queryWithCondition:(NSString *)condition;
++ (void)saveBatchItems:(NSArray *)items;
 + (void)saveBatchItems:(NSArray *)items synchronous:(BOOL)sync;
 
 + (NSString *)tableName;
