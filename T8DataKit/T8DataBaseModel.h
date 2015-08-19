@@ -28,4 +28,6 @@
 
 + (NSString *)tableName;
 
+- (NSString *)jsUnescape:(NSString *)str;
+
 @end

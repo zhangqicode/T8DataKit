@@ -45,6 +45,9 @@
         NSArray *proNames = propertyInfos.allKeys;
         [proNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
             id value = [dict objectForKey:name];
+            if ([value isKindOfClass:[NSString class]]) {
+                value = [self jsUnescape:value];
+            }
             if (value) {
                 [self setValue:value forKey:name];
             }
@@ -343,6 +346,17 @@
         }
         [aCoder encodeObject:value forKey:propertyName];
     }];
+}
+
+- (NSString *)jsUnescape:(NSString *)str
+{
+    str = [str stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    str = [str stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    str = [str stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    str = [str stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    str = [str stringByReplacingOccurrencesOfString:@"&apos;" withString:@"\\"];
+    str = [str stringByReplacingOccurrencesOfString:@"&#x2F;" withString:@"/"];
+    return str;
 }
 
 @end
