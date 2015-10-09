@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "T8TestModel.h"
+#import "SubModel.h"
+#import "thrModel.h"
 
 @interface ViewController ()
 
@@ -30,7 +32,7 @@
 //    NSArray *items = [NSArray arrayWithObjects:model, zhang, nil];
 //    [T8TestModel saveBatchItems:items];
     
-    T8TestModel *model = [[T8TestModel alloc] init];
+//    T8TestModel *model = [[T8TestModel alloc] init];
 //    model.name = @"zhangqi";
 //    model.model = [[SubModel alloc] init];
 //    model.model.name = @"haha";
@@ -39,6 +41,10 @@
 //    
 //    T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = 'zhangqi'"].firstObject;
 //    NSLog(@"ttt:%@",query.model);
+    
+    SubModel __unused *model = [[SubModel alloc] init];
+    T8DataBaseModel __unused *a = [[T8DataBaseModel alloc] init];
+    thrModel __unused *b = [[thrModel alloc] init];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

@@ -8,15 +8,12 @@
 
 #import "T8DataBaseModel.h"
 #import <UIKit/UIKit.h>
-#import "SubModel.h"
 
 @interface T8TestModel : T8DataBaseModel
 
 @property (nonatomic) NSString *name;
-//@property (nonatomic,assign) NSInteger age;
+@property (nonatomic,assign) NSInteger age;
 //@property (nonatomic,assign) int a_int;
 //@property (nonatomic,assign) CGFloat a_float;
-
-@property (nonatomic) SubModel *model;
 
 @end

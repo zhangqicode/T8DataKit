@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "T8DataBaseModel.h"
+#import "T8TestModel.h"
 
-@interface SubModel : T8DataBaseModel
+@interface SubModel : T8TestModel
 
-@property (nonatomic) NSString *name;
-@property (nonatomic,assign) NSInteger age;
+@property (strong, nonatomic) NSString *info;
 
 @end

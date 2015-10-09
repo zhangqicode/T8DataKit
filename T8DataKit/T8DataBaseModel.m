@@ -247,17 +247,21 @@
     NSMutableDictionary *classDict = [propertyInfoDict objectForKey:className];
     if (classDict==nil) {
         classDict = [NSMutableDictionary dictionary];
-        unsigned int count;
-        objc_property_t *properties = class_copyPropertyList([self class], &count);
-        NSArray *ignores = [[self class] ignoreProperties];
-        for (int i = 0; i < count; i++) {
-            objc_property_t property = properties[i];
-            NSString * key = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
-            if ([ignores containsObject:key]) {
-                continue;
+        Class currentClass = [self class];
+        while (currentClass != [T8DataBaseModel class]) {
+            unsigned int count;
+            objc_property_t *properties = class_copyPropertyList(currentClass, &count);
+            NSArray *ignores = [[self class] ignoreProperties];
+            for (int i = 0; i < count; i++) {
+                objc_property_t property = properties[i];
+                NSString * key = [[NSString alloc]initWithCString:property_getName(property)  encoding:NSUTF8StringEncoding];
+                if ([ignores containsObject:key]) {
+                    continue;
+                }
+                NSString *type = [self dbTypeConvertFromObjc_property_t:property];
+                [classDict setObject:type forKey:key];
             }
-            NSString *type = [self dbTypeConvertFromObjc_property_t:property];
-            [classDict setObject:type forKey:key];
+            currentClass = class_getSuperclass(currentClass);
         }
         [propertyInfoDict setObject:classDict forKey:className];
     }
