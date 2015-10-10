@@ -25,6 +25,7 @@
 + (NSMutableArray *)queryWithCondition:(NSString *)condition;
 + (void)saveBatchItems:(NSArray *)items;
 + (void)saveBatchItems:(NSArray *)items synchronous:(BOOL)sync;
++ (void)clearTableSynchronous:(BOOL)sync;
 
 + (NSString *)tableName;
 
