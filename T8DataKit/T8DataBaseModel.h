@@ -26,6 +26,7 @@
 + (void)saveBatchItems:(NSArray *)items;
 + (void)saveBatchItems:(NSArray *)items synchronous:(BOOL)sync;
 + (void)clearTableSynchronous:(BOOL)sync;
++ (void)deleteWithCondition:(NSString *)condition synchronous:(BOOL)sync;
 
 + (NSString *)tableName;
 

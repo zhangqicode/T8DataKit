@@ -193,6 +193,14 @@
     } synchronous:sync];
 }
 
++ (void)deleteWithCondition:(NSString *)condition synchronous:(BOOL)sync
+{
+    NSString *queryFormat = [NSString stringWithFormat:@"DELETE FROM %@ %@", [[self class] tableName], condition];
+    [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
+        [db executeUpdate:queryFormat];
+    } synchronous:sync];
+}
+
 + (void)checkTable
 {
     NSMutableString *sql = [NSMutableString stringWithCapacity:0];

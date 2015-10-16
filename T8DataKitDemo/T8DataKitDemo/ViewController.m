@@ -42,9 +42,16 @@
 //    T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = 'zhangqi'"].firstObject;
 //    NSLog(@"ttt:%@",query.model);
     
-    SubModel __unused *model = [[SubModel alloc] init];
-    T8DataBaseModel __unused *a = [[T8DataBaseModel alloc] init];
-    thrModel __unused *b = [[thrModel alloc] init];
+//    SubModel __unused *model = [[SubModel alloc] init];
+//    T8DataBaseModel __unused *a = [[T8DataBaseModel alloc] init];
+//    thrModel __unused *b = [[thrModel alloc] init];
+    
+    T8TestModel *test = [[T8TestModel alloc] init];
+    test.name = @"zhangqippp";
+    test.age = 26;
+    [test saveSynchronous:true];
+    
+    [T8TestModel deleteWithCondition:@"WHERE name = 'zhangqi'" synchronous:true];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
