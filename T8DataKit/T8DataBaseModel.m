@@ -278,6 +278,7 @@
                 NSString *type = [self dbTypeConvertFromObjc_property_t:property];
                 [classDict setObject:type forKey:key];
             }
+            free(properties);
             currentClass = class_getSuperclass(currentClass);
         }
         [propertyInfoDict setObject:classDict forKey:className];
@@ -289,11 +290,12 @@
 {
     char * type = property_copyAttributeValue(property, "T");
     
+    NSString *typeStr = DBText;
     switch(type[0]) {
         case 'f' : //float
         case 'd' : //double
         {
-            return DBFloat;
+            typeStr = DBFloat;
         }
             break;
             
@@ -303,7 +305,7 @@
         case 'l':   // long
         case 'q':   // NSInteger
         {
-            return DBInt;
+            typeStr = DBInt;
         }
             break;
             
@@ -319,25 +321,27 @@
             cls = [cls stringByReplacingOccurrencesOfString:@"\"" withString:@""];
             
             if ([NSClassFromString(cls) isSubclassOfClass:[NSString class]]) {
-                return DBText;
+                typeStr = DBText;
             }
             
             if ([NSClassFromString(cls) isSubclassOfClass:[NSNumber class]]) {
-                return DBText;
+                typeStr = DBText;
             }
             
             if ([NSClassFromString(cls) isSubclassOfClass:[NSData class]]) {
-                return DBData;
+                typeStr = DBData;
             }
             
             if ([NSClassFromString(cls) conformsToProtocol:@protocol(NSCoding)]) {
-                return [DBObject stringByAppendingFormat:@" %@", cls];
+                typeStr = [DBObject stringByAppendingFormat:@" %@", cls];
             }
         }
             break;
     }
     
-    return DBText;
+    free(type);
+    
+    return typeStr;
 }
 
 #pragma mark - NSCoding
