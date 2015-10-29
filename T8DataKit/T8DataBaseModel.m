@@ -322,17 +322,11 @@
             
             if ([NSClassFromString(cls) isSubclassOfClass:[NSString class]]) {
                 typeStr = DBText;
-            }
-            
-            if ([NSClassFromString(cls) isSubclassOfClass:[NSNumber class]]) {
+            }else if ([NSClassFromString(cls) isSubclassOfClass:[NSNumber class]]) {
                 typeStr = DBText;
-            }
-            
-            if ([NSClassFromString(cls) isSubclassOfClass:[NSData class]]) {
+            }else if ([NSClassFromString(cls) isSubclassOfClass:[NSData class]]) {
                 typeStr = DBData;
-            }
-            
-            if ([NSClassFromString(cls) conformsToProtocol:@protocol(NSCoding)]) {
+            }else if ([NSClassFromString(cls) conformsToProtocol:@protocol(NSCoding)]) {
                 typeStr = [DBObject stringByAppendingFormat:@" %@", cls];
             }
         }
