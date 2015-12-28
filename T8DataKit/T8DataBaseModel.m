@@ -130,13 +130,18 @@
                     value = @([result doubleForColumn:key]);
                 }else if ([type isEqualToString:DBText]){
                     value = [result stringForColumn:key];
+                    if (value == nil) {
+                        value = @"";
+                    }
                 }else if ([type isEqualToString:DBData]){
                     value = [result dataForColumn:key];
                 }else if ([type hasPrefix:DBObject]){
                     value = [result dataForColumn:key];
                     value = [NSKeyedUnarchiver unarchiveObjectWithData:value];
                 }
-                [model setValue:value forKey:key];
+                if (value) {
+                    [model setValue:value forKey:key];
+                }
             }];
             [resultArr addObject:model];
         }
