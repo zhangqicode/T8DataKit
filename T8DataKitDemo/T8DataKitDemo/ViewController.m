@@ -51,7 +51,7 @@
     test.age = 26;
     [test saveSynchronous:true];
     
-    [T8TestModel deleteWithCondition:@"WHERE name = 'zhangqi'" synchronous:true];
+    T8TestModel *query = [T8TestModel queryWithCondition:@"WHERE name = 'zhangqippp'"].firstObject;
     
     // Do any additional setup after loading the view, typically from a nib.
 }

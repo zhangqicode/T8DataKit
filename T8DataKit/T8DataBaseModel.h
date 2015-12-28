@@ -29,6 +29,9 @@
 + (void)deleteWithCondition:(NSString *)condition synchronous:(BOOL)sync;
 
 + (NSString *)tableName;
++ (NSString *)primaryKey;
++ (NSArray *)ignoreProperties;
++ (NSArray *)saveIgnoreProperties;
 
 - (NSString *)jsUnescape:(NSString *)str;
 

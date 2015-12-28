@@ -20,4 +20,9 @@
     return nil;
 }
 
++ (NSArray *)saveIgnoreProperties
+{
+    return @[@"age"];
+}
+
 @end
