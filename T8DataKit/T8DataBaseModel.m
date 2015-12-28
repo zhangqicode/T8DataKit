@@ -63,36 +63,7 @@
 
 - (void)saveSynchronous:(BOOL)sync
 {
-    [[self class] checkTable];
-    
-    NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
-    NSMutableArray *proNames = [propertyInfos.allKeys mutableCopy];
-    NSArray *saveIgnores = [[self class] saveIgnoreProperties];
-    [proNames removeObjectsInArray:saveIgnores];
-    NSString *names = [proNames componentsJoinedByString:@", "];
-    NSMutableArray *proArr = [NSMutableArray array];
-    for (int i = 0; i < proNames.count; i++) {
-        [proArr addObject:@"?"];
-    }
-    NSString *values = [proArr componentsJoinedByString:@", "];
-    NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
-    
-    NSMutableArray *params = [NSMutableArray array];
-    for (int i = 0; i < proNames.count; i++) {
-        NSString *key = [proNames objectAtIndex:i];
-        NSString *type = [propertyInfos objectForKey:key];
-        id value = [self valueForKey:key];
-        if ([type hasPrefix:DBObject]) {
-            id<NSCoding> obj = value;
-            [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
-        }else{
-            [params addObject:value];
-        }
-    }
-    
-    [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
-        [db executeUpdate:queryFormat withArgumentsInArray:params];
-    } synchronous:sync];
+    [[self class] saveBatchItems:@[self] synchronous:sync];
 }
 
 - (void)deleteObject
@@ -162,32 +133,55 @@
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         [db beginTransaction];
+        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        NSMutableArray *proNames = [propertyInfos.allKeys mutableCopy];
+        NSArray *saveIgnores = [[self class] saveIgnoreProperties];
+        [proNames removeObjectsInArray:saveIgnores];
+        
         for (id item in items) {
-            NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
-            NSMutableArray *proNames = [propertyInfos.allKeys mutableCopy];
-            NSArray *saveIgnores = [[self class] saveIgnoreProperties];
-            [proNames removeObjectsInArray:saveIgnores];
-            NSString *names = [proNames componentsJoinedByString:@", "];
-            NSMutableArray *proArr = [NSMutableArray array];
-            for (int i = 0; i < proNames.count; i++) {
-                [proArr addObject:@"?"];
-            }
-            NSString *values = [proArr componentsJoinedByString:@", "];
-            NSString *queryFormat = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
-            
-            NSMutableArray *params = [NSMutableArray array];
-            for (int i = 0; i < proNames.count; i++) {
-                NSString *key = [proNames objectAtIndex:i];
-                NSString *type = [propertyInfos objectForKey:key];
-                id value = [item valueForKey:key];
-                if ([type hasPrefix:DBObject]) {
-                    id<NSCoding> obj = value;
-                    [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
-                }else{
-                    [params addObject:value];
+            NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = '%@'", [[self class] tableName], [self primaryKey], [item valueForKey:[self primaryKey]]];
+            FMResultSet *result = [db executeQuery:sqlStr];
+            if ([result next]) {
+                NSMutableString *queryFormat = [NSMutableString stringWithFormat:@"UPDATE %@ SET ", [[self class] tableName]];
+                NSMutableArray *params = [NSMutableArray array];
+                NSMutableArray *keyValues = [NSMutableArray array];
+                [proNames enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [keyValues addObject:[NSString stringWithFormat:@"%@ = ?", key]];
+                    NSString *type = [propertyInfos objectForKey:key];
+                    id value = [item valueForKey:key];
+                    if ([type hasPrefix:DBObject]) {
+                        id<NSCoding> obj = value;
+                        [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
+                    }else{
+                        [params addObject:value];
+                    }
+                }];
+                [queryFormat appendString:[keyValues componentsJoinedByString:@", "]];
+                [queryFormat appendFormat:@" WHERE %@ = '%@'", [self primaryKey], [item valueForKey:[self primaryKey]]];
+                [db executeUpdate:queryFormat withArgumentsInArray:params];
+            }else{
+                NSString *names = [proNames componentsJoinedByString:@", "];
+                NSMutableArray *proArr = [NSMutableArray array];
+                for (int i = 0; i < proNames.count; i++) {
+                    [proArr addObject:@"?"];
                 }
+                NSString *values = [proArr componentsJoinedByString:@", "];
+                NSString *queryFormat = [NSString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", [[self class] tableName], names, values];
+                
+                NSMutableArray *params = [NSMutableArray array];
+                for (int i = 0; i < proNames.count; i++) {
+                    NSString *key = [proNames objectAtIndex:i];
+                    NSString *type = [propertyInfos objectForKey:key];
+                    id value = [item valueForKey:key];
+                    if ([type hasPrefix:DBObject]) {
+                        id<NSCoding> obj = value;
+                        [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
+                    }else{
+                        [params addObject:value];
+                    }
+                }
+                [db executeUpdate:queryFormat withArgumentsInArray:params];
             }
-            [db executeUpdate:queryFormat withArgumentsInArray:params];
         }
         [db commit];
     } synchronous:sync];
