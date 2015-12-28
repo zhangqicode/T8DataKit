@@ -164,7 +164,9 @@
         [db beginTransaction];
         for (id item in items) {
             NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
-            NSArray *proNames = propertyInfos.allKeys;
+            NSMutableArray *proNames = [propertyInfos.allKeys mutableCopy];
+            NSArray *saveIgnores = [[self class] saveIgnoreProperties];
+            [proNames removeObjectsInArray:saveIgnores];
             NSString *names = [proNames componentsJoinedByString:@", "];
             NSMutableArray *proArr = [NSMutableArray array];
             for (int i = 0; i < proNames.count; i++) {
