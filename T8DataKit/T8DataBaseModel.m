@@ -48,7 +48,7 @@
             if ([value isKindOfClass:[NSString class]]) {
                 value = [self jsUnescape:value];
             }
-            if (value) {
+            if (value && ![value isKindOfClass:[NSNull class]]) {
                 [self setValue:value forKey:name];
             }
         }];
