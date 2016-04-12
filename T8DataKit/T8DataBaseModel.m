@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         
-        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        NSDictionary *propertyInfos = [[self class] getPropertyInfo];
         [propertyInfos enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *type, BOOL *stop) {
             if ([type hasPrefix:DBObject]) {
                 NSArray *items = [type componentsSeparatedByString:@" "];
@@ -41,7 +41,7 @@
 {
     self = [self init];
     if (self) {
-        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        NSDictionary *propertyInfos = [[self class] getPropertyInfo];
         NSArray *proNames = propertyInfos.allKeys;
         [proNames enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
             id value = [dict objectForKey:name];
@@ -92,7 +92,7 @@
         FMResultSet *result = [db executeQuery:queryFormat];
         while ([result next]) {
             T8DataBaseModel *model = [[[self class] alloc] init];
-            NSDictionary *propertyInfo = [[self class] getPropertyInfo];
+            NSDictionary *propertyInfo = [self getPropertyInfo];
             [propertyInfo enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *type, BOOL *stop) {
                 id value;
                 if ([type isEqualToString:DBInt]) {
@@ -133,7 +133,7 @@
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
         [db beginTransaction];
-        NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+        NSDictionary *propertyInfos = [self getPropertyInfo];
         NSMutableArray *proNames = [propertyInfos.allKeys mutableCopy];
         NSArray *saveIgnores = [[self class] saveIgnoreProperties];
         [proNames removeObjectsInArray:saveIgnores];
@@ -213,7 +213,7 @@
     
     NSMutableArray *propertyArr = [NSMutableArray arrayWithCapacity:0];
     
-    NSMutableDictionary *propertyInfos = [[self class] getPropertyInfo];
+    NSDictionary *propertyInfos = [self getPropertyInfo];
     __weak typeof(self) weakSelf = self;
     [propertyInfos.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         NSString *type = [propertyInfos objectForKey:key];
@@ -262,16 +262,18 @@
     return nil;
 }
 
-+ (NSMutableDictionary *)getPropertyInfo
++ (NSDictionary *)getPropertyInfo
 {
     static NSMutableDictionary *propertyInfoDict;
-    if (propertyInfoDict==nil) {
-        propertyInfoDict = [NSMutableDictionary dictionary];
-    }
+    static dispatch_once_t onceTokenForPropertyInfoDict;
+    dispatch_once(&onceTokenForPropertyInfoDict, ^{
+        propertyInfoDict = [[NSMutableDictionary alloc] init];
+    });
+    
     NSString *className = [NSStringFromClass([self class]) lowercaseString];
     NSMutableDictionary *classDict = [propertyInfoDict objectForKey:className];
     if (classDict==nil) {
-        classDict = [NSMutableDictionary dictionary];
+        classDict = [[NSMutableDictionary alloc] init];
         Class currentClass = [self class];
         while (currentClass != [T8DataBaseModel class]) {
             unsigned int count;
@@ -291,7 +293,8 @@
         }
         [propertyInfoDict setObject:classDict forKey:className];
     }
-    return classDict;
+    
+    return [classDict copy];
 }
 
 + (NSString *)dbTypeConvertFromObjc_property_t:(objc_property_t)property
@@ -351,7 +354,7 @@
 {
     self = [super init];
     if (self) {
-        NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
+        NSDictionary *propertyInfoDict = [[self class] getPropertyInfo];
         [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
             id value = [aDecoder decodeObjectForKey:propertyName];
             if ([type hasPrefix:DBObject]) {
@@ -365,7 +368,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    NSMutableDictionary *propertyInfoDict = [[self class] getPropertyInfo];
+    NSDictionary *propertyInfoDict = [[self class] getPropertyInfo];
     [propertyInfoDict enumerateKeysAndObjectsUsingBlock:^(NSString *propertyName, NSString *type, BOOL *stop) {
         id value = [self valueForKey:propertyName];
         if ([type hasPrefix:DBObject]) {
