@@ -129,6 +129,10 @@
 
 + (void)saveBatchItems:(NSArray *)items synchronous:(BOOL)sync
 {
+    if (![self primaryKey] || [[self primaryKey] isEqual:[NSNull null]]) {
+        return;
+    }
+    
     [[self class] checkTable];
     
     [[T8DataBaseManager shareInstance] dispatchOnDatabaseThread:^(FMDatabase *db) {
@@ -139,6 +143,11 @@
         [proNames removeObjectsInArray:saveIgnores];
         
         for (id item in items) {
+            id primaryValue = [item valueForKey:[self primaryKey]];
+            if (!primaryValue || [primaryValue isEqual:[NSNull null]]) {
+                continue;
+            }
+            
             NSString *sqlStr = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = '%@'", [[self class] tableName], [self primaryKey], [item valueForKey:[self primaryKey]]];
             FMResultSet *result = [db executeQuery:sqlStr];
             if ([result next]) {
@@ -149,11 +158,15 @@
                     [keyValues addObject:[NSString stringWithFormat:@"%@ = ?", key]];
                     NSString *type = [propertyInfos objectForKey:key];
                     id value = [item valueForKey:key];
-                    if ([type hasPrefix:DBObject]) {
-                        id<NSCoding> obj = value;
-                        [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
-                    }else{
-                        [params addObject:value];
+                    if (value) {
+                        if ([type hasPrefix:DBObject]) {
+                            id<NSCoding> obj = value;
+                            [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
+                        }else{
+                            [params addObject:value];
+                        }
+                    } else {
+                        [params addObject:[self defaultValueForDBType:type]];
                     }
                 }];
                 [queryFormat appendString:[keyValues componentsJoinedByString:@", "]];
@@ -173,11 +186,15 @@
                     NSString *key = [proNames objectAtIndex:i];
                     NSString *type = [propertyInfos objectForKey:key];
                     id value = [item valueForKey:key];
-                    if ([type hasPrefix:DBObject]) {
-                        id<NSCoding> obj = value;
-                        [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
-                    }else{
-                        [params addObject:value];
+                    if (value) {
+                        if ([type hasPrefix:DBObject]) {
+                            id<NSCoding> obj = value;
+                            [params addObject:[NSKeyedArchiver archivedDataWithRootObject:obj]];
+                        }else{
+                            [params addObject:value];
+                        }
+                    } else {
+                        [params addObject:[self defaultValueForDBType:type]];
                     }
                 }
                 [db executeUpdate:queryFormat withArgumentsInArray:params];
@@ -261,6 +278,10 @@
 {
     return nil;
 }
+
+
+#pragma mark -
+#pragma mark - get object properties
 
 + (NSDictionary *)getPropertyInfo
 {
@@ -349,7 +370,34 @@
     return typeStr;
 }
 
++ (id)defaultValueForDBType:(NSString *)dbType
+{
+    if ([dbType hasPrefix:DBText]) {
+        return @"";
+    } else if ([dbType hasPrefix:DBInt]) {
+        return @(0);
+    } else if ([dbType hasPrefix:DBFloat]) {
+        return @(0.0f);
+    } else if ([dbType hasPrefix:DBData]) {
+        return [NSData data];
+    } else if ([dbType hasPrefix:DBObject]) {
+        NSString *classStr = [dbType substringFromIndex:DBObject.length + 1];
+        if (classStr && classStr.length > 0) {
+            Class class = NSClassFromString(classStr);
+            if (class) {
+                id<NSCoding> value =  [[class alloc] init];
+                return value;
+            }
+        }
+    }
+    
+    return [NSNull null];
+}
+
+
+#pragma mark -
 #pragma mark - NSCoding
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
