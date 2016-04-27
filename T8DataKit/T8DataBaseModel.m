@@ -14,14 +14,12 @@
 
 static pthread_mutex_t propertyInfoDictLock;
 
-
 @implementation T8DataBaseModel
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        
         NSDictionary *propertyInfos = [[self class] getPropertyInfo];
         [propertyInfos enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *type, BOOL *stop) {
             if ([type hasPrefix:DBObject]) {
@@ -292,6 +290,7 @@ static pthread_mutex_t propertyInfoDictLock;
     static NSMutableDictionary *propertyInfoDict;
     static dispatch_once_t onceTokenForPropertyInfoDict;
     dispatch_once(&onceTokenForPropertyInfoDict, ^{
+        pthread_mutex_init(&propertyInfoDictLock, NULL);
         propertyInfoDict = [[NSMutableDictionary alloc] init];
     });
     
